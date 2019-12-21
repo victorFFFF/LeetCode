@@ -14,7 +14,7 @@ Input: [4,1,2,1,2]
 Output: 4*/
 
 class singleNumber {
-    public int singleNumber(int[] nums) {
+    public int singleNumber123(int[] nums) {
         
         HashMap<Integer, Integer> hMap = new HashMap<>();
         
