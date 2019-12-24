@@ -21,11 +21,12 @@ Output: ["banana"] */
 
 class uncommonWordsFromTwoSentences{
     public String[] uncommonFromSentences(String A, String B) {
+           
+        HashMap<String, Integer> hMap = new HashMap <>();
+        List<String> list = new ArrayList<>();
+        List<String> uncommon = new ArrayList<>();
         
-        HashMap<String, Integer> hMap = new HashMap<>();
-        ArrayList<String> list = new ArrayList<>();
-        ArrayList<String> uncommon = new ArrayList<>();
-        int start = 0;
+        
         
     if(A.length() == 0 && B.length() == 0)
     {
@@ -34,66 +35,32 @@ class uncommonWordsFromTwoSentences{
         
     else
     {
-        for(int i = 0; i< A.length(); i++)
+        String[] A2 = A.split(" ");
+        String[] B2 = B.split(" ");
+        
+        
+        for(int i = 0; i < A2.length; i++)
         {
-            if(A.charAt(i) == ' ')
+            if(hMap.containsKey(A2[i]))
+                hMap.put(A2[i],1);
+            else
             {
-                if(hMap.containsKey(A.substring(start,i)))
-                    hMap.put(A.substring(start,i),1);
-                else
-                {
-                    hMap.put(A.substring(start,i),0);
-                    list.add(A.substring(start,i));
-                }
-                
-                 start = i+1;
-            }
-            if(i == A.length()-1)
-            {
-                if(hMap.containsKey(A.substring(start,i+1)))
-                    hMap.put(A.substring(start,i+1),1);
-                else
-                {
-                    hMap.put(A.substring(start,i+1),0);
-                    list.add(A.substring(start,i+1));
-                }
+                hMap.put(A2[i],0);
+                list.add(A2[i]);
             }
         }
         
-        
-        
-        
-         start = 0;
-        for(int i = 0; i< B.length(); i++)
-        {
-            if(B.charAt(i) == ' ')
+          for(int i = 0; i < B2.length; i++)
             {
-                if(hMap.containsKey(B.substring(start,i)))
-                    hMap.put(B.substring(start,i),1);
-                
+                if(hMap.containsKey(B2[i]))
+                    hMap.put(B2[i],1);
                 else
                 {
-                    hMap.put(B.substring(start,i),0);
-                    list.add(B.substring(start,i));
+                    hMap.put(B2[i],0);
+                    list.add(B2[i]);
                 }
-                
-                start = i+1;
-            }
-            
-            if( i == B.length()-1 )
-            {
-                if(hMap.containsKey(B.substring(start,i+1)))
-                     hMap.put(B.substring(start,i+1),1);
-                else
-                {
-                    hMap.put(B.substring(start,i+1),0);  
-                    list.add(B.substring(start,i+1));
-                }
-            }
-        }
-        
-        
-    }
+          }
+    }      
         
         for(int i = 0; i < list.size() ; i++)
         {
@@ -101,8 +68,7 @@ class uncommonWordsFromTwoSentences{
                 uncommon.add(list.get(i));           
         }
         
-
-            
+        
         return uncommon.toArray(new String[uncommon.size()]);
 }
 }
