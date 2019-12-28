@@ -29,7 +29,6 @@ class groupAnagram {
 
       List< List<String> > wholeList = new ArrayList<>();
       
-    //Loop through entire sorted array and compare each element, if the 2 strings are equal then insert it into a arrayList named partList.
       for(int i = 0; i < strs.length; i++)
       { 
           //make a new arraylist for partLis everytime i increase by 1
@@ -40,7 +39,9 @@ class groupAnagram {
           partList.add(associateArray[i]);
 
           if( i != strs.length-1)
-            {
+            {   
+                 //Loop through entire sorted array and compare each element, 
+                 //if the 2 elements are string equivalent then insert it into a arrayList named partList.
                 for(int j = i ; j < strs.length-1; j++)
                 {
                             if(strs[i].equals(strs[j+1]))
