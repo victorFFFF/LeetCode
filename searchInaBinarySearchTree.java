@@ -29,8 +29,6 @@ You should return this subtree:
 class searchInaBinarySearchTree {
     public TreeNode searchBST(TreeNode root, int val) {
         
-        TreeNode previous;
-        
         if(root == null)
             return null;
         else
