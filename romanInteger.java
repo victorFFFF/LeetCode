@@ -23,40 +23,76 @@ Input: "III"
 Output: 3 */
 
 class romanInteger {
-    Integer c2i(Character c) {
-        switch (c) {
-        case 'I':
-            return 1;
-        case 'V':
-            return 5;
-        case 'X':
-            return 10;
-        case 'L':
-            return 50;
-        case 'C':
-            return 100;
-        case 'D':
-            return 500;
-        case 'M':
-            return 1000;
-        default:
-            return 0;
-        }
-    }
-
-    public int romanToInt(String s) {
+   public int romanToInt(String s) {
+     
         int sum = 0;
-        int current = c2i(s.charAt(0));
-        for (int i = 0; i < s.length() - 1; i++) {
-            int next = c2i(s.charAt(i + 1));
-            if (current < next) {
-                sum -= current;
-            } else {
-                sum += current;
+        int length = s.length();
+        char[] array = new char[length];
+        
+        for(int i =0; i < length ; i++)
+        {
+            array[i] = s.charAt(i);
+        }        
+    
+        for( int i = 0; i < length-1 ; i++)
+         {
+                    switch( array[i] )
+                    {
+                        case 'I':if(length == 1) 
+                                    sum += 1;
+                                  else
+                                      if(array[i+1] == 'V' || array[i+1] == 'X')
+                                        sum -= 1;
+                                  else
+                                      sum += 1;
+                                  break;
+                        case 'V': sum += 5;
+                                  break;
+                        case 'X': if(length == 1) 
+                                    sum += 10;
+                                  else
+                                      if(array[i+1] == 'L' || array[i+1] == 'C')
+                                        sum -= 10;
+                                  else
+                                      sum += 10;
+                                  break;    
+                        case 'L': sum += 50;
+                                  break;
+                        case 'C': if(length == 1) 
+                                    sum += 100;
+                                  else
+                                      if(array[i+1] == 'D' || array[i+1] == 'M')
+                                        sum -= 100;
+                                  else
+                                        sum += 100;
+                                  break;
+                        case 'D': sum += 500;
+                                  break;
+                        case 'M': sum += 1000;
+                                  break;      
+                        }
             }
-            current = next;
-        }
-        sum += current;
-        return sum;
-    }
+        
+               if( length >= 1)
+                    {
+                              switch( array[length-1] )
+                                {
+                                    case 'I': sum += 1;
+                                              break;
+                                    case 'V': sum += 5;
+                                              break;
+                                    case 'X': sum += 10;
+                                              break;    
+                                    case 'L': sum += 50;
+                                              break;
+                                    case 'C': sum += 100;
+                                              break;
+                                    case 'D': sum += 500;
+                                              break;
+                                    case 'M': sum += 1000;
+                                              break;      
+                                    }
+                    }
+          return sum;
+  }
 }
