@@ -19,11 +19,9 @@ Explanation: 2 does not exist in nums so return -1
 class binarySearch {
     public int search(int[] nums, int target) {    
         
-       int result = binarySearch(0, nums.length-1 , target, nums);
-        
+       int result = binarySearch(0, nums.length-1 , target, nums);    
         return result;
     }
-    
     
     public int binarySearch(int left, int right, int theTarget, int [] array)
     {
