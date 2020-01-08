@@ -45,3 +45,33 @@ class searchInaBinarySearchTree {
         }
     }
 }
+
+
+
+//Iterative Version
+class Solution {
+    public TreeNode searchBST(TreeNode root, int val) {
+
+        Stack<TreeNode> stack = new Stack<>();
+        
+        
+        if(root == null)
+            return null;
+        
+        while(root != null || stack.size() != 0)
+        {
+            while(root != null)
+            {   
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            
+            if(root.val == val)
+                return root;
+     
+            root = root.right;
+        }
+        return null;
+}
+}
