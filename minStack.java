@@ -22,7 +22,7 @@ minStack.getMin();   --> Returns -2.
 
 
 
-class MinStack {
+class minStack {
     Stack<Integer> stack = new Stack<>();
     Stack<Integer> minStack = new Stack<>(); // keeps track of minimums
 
