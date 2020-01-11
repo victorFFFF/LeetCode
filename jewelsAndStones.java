@@ -16,7 +16,7 @@ Note:
 S and J will consist of letters and have length at most 50.
 The characters in J are distinct.*/
 
-class JewelsandStones {
+class jewelsAndStones {
     public int numJewelsInStones(String J, String S) {
         
         if(S.length() == 0 || J.length() == 0)
