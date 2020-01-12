@@ -19,7 +19,6 @@ class longestContinuousIncreasingSubsequence {
     
         if(nums.length == 0 || nums == null)
             return 0;
-        
         if(nums.length == 1)
             return 1;
         
@@ -40,11 +39,9 @@ class longestContinuousIncreasingSubsequence {
                     else
                         count++;
 
-                  if( i == nums.length-1)
-                  {
-                    if( count > longestSequence)
-                        longestSequence = count;
-                  }                
+                    if( i == nums.length-1)
+                        if( count > longestSequence)
+                            longestSequence = count;
             }
             else
                 count++;
