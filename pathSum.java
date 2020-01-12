@@ -16,10 +16,6 @@ Given the below binary tree and sum = 22,
 7    2      1
 return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
 */
-
-
-
-//ITERATIVE VERSION
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -29,7 +25,11 @@ return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
  *     TreeNode(int x) { val = x; }
  * }
  */
-class Solution {
+
+
+
+//ITERATIVE VERSION
+class pathSum {
     public boolean hasPathSum(TreeNode root, int sum) {
         
         if(root == null)
