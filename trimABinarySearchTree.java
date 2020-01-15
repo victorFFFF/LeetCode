@@ -33,9 +33,9 @@ Bonus points if you could solve it both recursively and iteratively.
  * }
  */
 
+//          Iterative Version
 //First we iterative through the tree from left then right. During the traversal we add the current node's value into a queue. 
 //Then we have a method to built a tree from scratch.
-
 class trimABinarySearchTree{
     public TreeNode trimBST(TreeNode root, int L, int R) {
         
