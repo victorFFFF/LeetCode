@@ -57,3 +57,36 @@ class findWordsThatCanBeFormedByCharacters {
         return sum;        
     }
 }
+
+
+
+//More time efficient solution 
+//Not my solution
+
+    public int countCharacters(String[] words, String chars) {
+        int[] c = new int[128];
+        //count the num of each character
+        for (char ch : chars.toCharArray()) {
+            c[ch]++;
+        }
+        
+        int res = 0;
+        for (String s : words) {
+            //create copy of count array for this word
+            int[] c2 = Arrays.copyOf(c, 128);
+            boolean valid = true;
+            for (char ch : s.toCharArray()) {
+                c2[ch]--;
+                //if we don't ave enough count of character
+                if (c2[ch] < 0) {
+                    valid = false;
+                    break;
+                }
+            }
+            //if we can form the word - add it's length to the result
+            if (valid) {
+                res+= s.length();
+            } 
+        }
+        return res;
+    }
