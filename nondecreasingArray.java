@@ -15,7 +15,7 @@ Note: The n belongs to [1, 10,000].
 
 
 My approach: For an array to be NOT an increasing array,
-there has to be at least 2 element in the array with each greated than a element on its right with distinct index.
+there has to be at least 2 element in the array with each greater than a element on its right with distinct index.
 This is why we have an arraylist to keep track of the index number that is num[i] > num[i+1]. So i+1 index is recorded.
 */
 
