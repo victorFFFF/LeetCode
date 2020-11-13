@@ -21,9 +21,9 @@ Output: 1->2->3
  * }
  */
 class RemoveDuplicatesfromSortedList {
+    
     public ListNode deleteDuplicates(ListNode head) {
         ListNode current = head;
-        ListNode temp = head;
         ListNode prev = head;
         
         
