@@ -36,16 +36,20 @@ class RepeatedSubstringPattern {
         
         for( int i = 0; i < length/2; i++)
         {
-            for( int j = 0; j < length/(1+i); j++)
-            {
-                str.append(s.substring(0, i+1));
-            }
-            
-            if( str.toString().equals(s))
-                return true;
+
+            if( length % (i+1) == 0 )
+            { 
+                for( int j = 0; j < length/(1+i); j++)
+                {
+                    str.append(s.substring(0, i+1));
+                }
                 
-          str.setLength(0);
+                if( str.toString().equals(s))
+                    return true;
+                    
+            str.setLength(0);
             
+        }
         }
         
         return false;
