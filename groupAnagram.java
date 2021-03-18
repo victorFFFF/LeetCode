@@ -14,52 +14,47 @@ Note:
 All inputs will be in lowercase.
 The order of your output does not matter.*/
 
-class groupAnagram {
-    public List<List<String>> groupAnagrams(String[] strs) {
-        
-    String[] associateArray = strs.clone();
+class groupAnagrams {
+  public List<List<String>> groupAnagrams(String[] strs) {
 
-      //Sorting each individual element in alphabetical order
-      for(int i = 0; i < strs.length; i++)
-      {
-        char[] arrayChar = strs[i].toCharArray();
-        Arrays.sort(arrayChar);
-        strs[i] = new String(arrayChar);
-      }
+    List<List<String>> list = new ArrayList<>();
+    List<String> innerList = new ArrayList<>();
+    HashMap<String, ArrayList<Integer>> map = new HashMap<>();
 
-      List< List<String> > wholeList = new ArrayList<>();
-      
-      for(int i = 0; i < strs.length; i++)
-      { 
-          //make a new arraylist for partLis everytime i increase by 1
-          List<String> partList = new ArrayList<>();
-          
-        if(strs[i] != null)
-        {
-          partList.add(associateArray[i]);
+    // Associate array
+    String[] strs2 = strs.clone();
 
-          if( i != strs.length-1)
-            {   
-                 //Loop through entire sorted array and compare each element, 
-                 //if the 2 elements are string equivalent then insert it into a arrayList named partList.
-                for(int j = i ; j < strs.length-1; j++)
-                {
-                            if(strs[i].equals(strs[j+1]))
-                            {
-                              partList.add(associateArray[j+1]);
-                              strs[j+1] = null;
-                            }
-                }
-            }
-         //Setting strs[i] to null so we will know if it is already inserted into the partList
-          strs[i] = null;  
-            
-        //Add the partList into a elemnt of wholeList.
-        //Each element wholeList contains a arrayList of partList
-          wholeList.add(partList);
+    // Alphabetize each string in array
+    for (int i = 0; i < strs.length; i++) {
+      char[] c = strs[i].toCharArray();
+      Arrays.sort(c);
+      strs[i] = new String(c);
+    }
+
+    // Group up same anagram together
+    for (int i = 0; i < strs.length; i++) {
+
+      if (map.get(strs[i]) == null) {
+        map.put(strs[i], new ArrayList<>());
+        map.get(strs[i]).add(i);
+      } else
+        map.get(strs[i]).add(i);
+    }
+
+    // Finish grouping by putting into the list
+    for (int i = 0; i < strs.length; i++) {
+
+      if (map.get(strs[i]) != null) {
+        for (int x : map.get(strs[i])) {
+          innerList.add(strs2[x]);
         }
+        map.remove(strs[i]);
+        list.add(innerList);
+        innerList = new ArrayList<>();
       }
-      return wholeList;      
+    }
+
+    return list;
+
   }
-    
 }
