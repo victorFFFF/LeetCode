@@ -11,81 +11,58 @@ Given 1->2->3->4, you should return the list as 2->1->4->3.
 */
 
 /**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
+ * Definition for singly-linked list. public class ListNode { int val; ListNode
+ * next; ListNode(int x) { val = x; } }
  */
- 
 
-//My solution
+// My solution
 
 class swapNodesInPairs {
     public ListNode swapPairs(ListNode head) {
-        
-        if(head == null)
+
+        ListNode current = head;
+        ListNode newList = null;
+        int val = 1;
+        Queue<ListNode> oddQ = new LinkedList<>();
+        Queue<ListNode> evenQ = new LinkedList<>();
+
+        if (head == null)
             return null;
-        if(head.next == null)
+        if (head.next == null)
             return head;
-        
-        ListNode pointer = head;
-        ListNode temp;
-        ArrayList< ListNode > list = new ArrayList<>();
-        int count = 0;
-        int even = 0;
-        int odd = 1;
-        
-        //Add all nodes to array
-        while( pointer != null)
-        {
-            temp = pointer.next;
-            pointer.next = null;
-            list.add(pointer);
-            pointer = temp;
-            count++;
+
+        while (current != null) {
+            // EVEN
+            if (val % 2 == 0)
+                evenQ.add(current);
+            // ODD
+            else
+                oddQ.add(current);
+
+            current = current.next;
+            val++;
         }
-            head = list.get(1);
-         
-        //Reverse 2 nodes at time 
-        for(int i = 0; i < count/2 ; i++)
-        {
-            pointer = list.get(odd);
-            pointer.next = list.get(even);
-            pointer.next.next = null;
-            
-            even += 2;
-            odd += 2;           
+
+        for (int i = 0; i < val - 1; i++) {
+            if (newList == null) {
+                newList = evenQ.remove();
+                head = newList;
+            } else {
+                if (i % 2 == 0 && evenQ.size() > 0)
+                    newList.next = evenQ.remove();
+                else
+                    newList.next = oddQ.remove();
+
+                newList = newList.next;
+                newList.next = null;
+            }
         }
-        odd = 3;
-        pointer= head;
-        
-        //Combine all the reversed Nodes
-        for( int i = 0; i < count/2-1 ; i++)
-        {
-            while(pointer.next != null)
-                pointer = pointer.next;
-            pointer.next = list.get(odd);
-            odd += 2;    
-            
-        }
-        //Add the last remaining node if the total number is odd;
-           if( count % 2 != 0)
-           {
-               pointer = head;
-               while( pointer.next != null)
-                   pointer = pointer.next;
-               
-               pointer.next = list.get(count-1);
-           }
         return head;
     }
+
 }
 
-
-
-//Simple solution but not my solution
+    // Simple solution but not my solution
 
 public ListNode swapNodesInPairs(ListNode head) {
     ListNode dummy = new ListNode(0);
